@@ -1,5 +1,5 @@
 // Team time zones
-const team = [
+export const team = [
     { flag: '🇮🇱', timeZone: 'Israel', name: 'Elad', slackUserId: 'D06649W8G2C' },
     { flag: '🇬🇧', timeZone: 'Europe/London', name: 'Matt', slackUserId: 'D03JG0865BN'  },
     { flag: '🇬🇧', timeZone: 'Europe/London', name: 'Rob', slackUserId: 'D03GRQY79U6'  },
@@ -9,4 +9,5 @@ const team = [
     { flag: '🇺🇸', timeZone: 'America/Chicago', name: 'Taty', slackUserId: 'D03TZPRD716'  },
 ];
 
-export default team;
+const slackTeamId = 'T02UKDKNA';
+export const getSlackUserLink = (userId: string) => `slack://user?team=${slackTeamId}&id=${userId}`;

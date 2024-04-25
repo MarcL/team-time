@@ -11,11 +11,11 @@
   "license": "MIT",
   "commands": [
     {
-      "name": "menuBar",
+      "name": "list",
       "title": "Team Time",
       "subtitle": "Shows the team's timezones",
       "description": "Shows the team's timezones",
-      "mode": "menu-bar",
+      "mode": "view",
       "interval": "1m"
     }
   ],
