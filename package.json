@@ -11,7 +11,7 @@
   "license": "MIT",
   "commands": [
     {
-      "name": "list",
+      "name": "main",
       "title": "Team Time",
       "subtitle": "Shows the team's timezones",
       "description": "Shows the team's timezones",

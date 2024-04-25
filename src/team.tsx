@@ -1,5 +1,7 @@
+import { TeamMember } from "./types";
+
 // Team time zones
-export const team = [
+export const team: Array<TeamMember> = [
     { flag: '🇮🇱', timeZone: 'Israel', name: 'Elad', slackUserId: 'D06649W8G2C' },
     { flag: '🇬🇧', timeZone: 'Europe/London', name: 'Matt', slackUserId: 'D03JG0865BN'  },
     { flag: '🇬🇧', timeZone: 'Europe/London', name: 'Rob', slackUserId: 'D03GRQY79U6'  },
