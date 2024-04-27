@@ -24,7 +24,6 @@ export default function Command() {
   // Load from async storage
   useEffect(() => {
     (async () => {
-      console.log("Loading team members from local storage");
       const storedTeamMembers = await LocalStorage.getItem<string>(STORAGE_KEY);
 
       if (!storedTeamMembers) {
@@ -35,7 +34,6 @@ export default function Command() {
       try {
         const teamMembers: TeamMember[] = JSON.parse(storedTeamMembers);
         setState((previous) => ({ ...previous, teamMembers, isLoading: false }));
-        console.log({teamMembers});
       } catch (e) {
         // can't decode teamMembers
         setState((previous) => ({ ...previous, teamMembers: [], isLoading: false }));
@@ -46,8 +44,6 @@ export default function Command() {
     // Save to local storage
   useEffect(() => {
     (async () => {
-      console.log("Saving team members to local storage");
-      console.log(state);
       await LocalStorage.setItem(STORAGE_KEY, JSON.stringify(state.teamMembers));
     })();
   }, [state.teamMembers]);
@@ -57,7 +53,6 @@ export default function Command() {
       const { name, timeZone, slackUserId, flag } = member;
       const newTeamMembers: TeamMember[] = [...state.teamMembers, { id: nanoid(), name, flag, timeZone, slackUserId }];
 
-      console.log(newTeamMembers);
       setState((previous) => ({ ...previous, teamMembers: newTeamMembers, searchText: "" }));
     },
     [state.teamMembers, setState]
@@ -65,36 +60,39 @@ export default function Command() {
 
   const handleDelete = useCallback(
     (index: number) => {
-      console.log(`Deleting team member at index ${index}`)
       const newTeamMembers = [...state.teamMembers];
       newTeamMembers.splice(index, 1);
-      console.log(newTeamMembers);
       setState((previous) => ({ ...previous, teamMembers: newTeamMembers }));
     },
     [state.teamMembers, setState]
   );
 
   return (
+    // TODO: Add onSearchTextChange
     <List
       isLoading={state.isLoading}
       searchText={state.searchText}
     >
       <EmptyView teamMembers={team} onCreate={handleCreate} />
-      {state.teamMembers.map((member, index) => (
-        <List.Item
-          key={member.id}
-          title={member.name}
-          icon={member.flag}
-          actions={
-            <ActionPanel>
-              <ActionPanel.Section>
-                <AddTeamMemberAction onCreate={handleCreate} />
-                <DeleteTeamMemberAction onDelete={() => handleDelete(index)} />
-              </ActionPanel.Section>
-            </ActionPanel>
-          }
-        />
-      ))}
+      {state.teamMembers.map((member, index) => {
+          const time = new Date().toLocaleString(undefined, { timeZone: member.timeZone, timeStyle: "short" });
+          const title = `${member.name} - ${time}`;
+          return (
+          <List.Item
+            key={member.id}
+            title={title}
+            icon={member.flag}
+            actions={
+              <ActionPanel>
+                <ActionPanel.Section>
+                  <AddTeamMemberAction onCreate={handleCreate} />
+                  <DeleteTeamMemberAction onDelete={() => handleDelete(index)} />
+                </ActionPanel.Section>
+              </ActionPanel>
+            }
+          />
+        )}
+      )}
     </List>
   );
 }

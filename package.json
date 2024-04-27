@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "@raycast/api": "latest",
+    "country-flag-emoji": "^1.0.3",
     "nanoid": "^5.0.7"
   },
   "devDependencies": {
