@@ -10,7 +10,7 @@ function AddTeamMemberForm(props: { defaultTitle?: string; onCreate: (member: Te
   const { pop } = useNavigation();
 
   const handleSubmit = useCallback(
-    (values: { name: string; timeZone: string, flag: string }) => {
+    (values: { name: string; timeZone: string; flag: string }) => {
       const { name, timeZone, flag } = values;
       onCreate({ id: nanoid(), name, flag, timeZone });
       pop();
@@ -22,7 +22,7 @@ function AddTeamMemberForm(props: { defaultTitle?: string; onCreate: (member: Te
     <Form
       actions={
         <ActionPanel>
-          <Action.SubmitForm title="Add team member" onSubmit={handleSubmit} />
+          <Action.SubmitForm title="Add Team Member" onSubmit={handleSubmit} />
         </ActionPanel>
       }
     >

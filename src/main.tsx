@@ -3,13 +3,13 @@ import { nanoid } from "nanoid";
 import { ActionPanel, List, LocalStorage, Icon } from "@raycast/api";
 import { TeamMember } from "./types";
 import { EmptyView } from "./components";
-import { team } from './team';
+import { team } from "./team";
 import { AddTeamMemberAction, DeleteTeamMemberAction } from "./components";
 
 type State = {
-    isLoading: boolean;
-    searchText: string;
-    teamMembers: TeamMember[];
+  isLoading: boolean;
+  searchText: string;
+  teamMembers: TeamMember[];
 };
 
 const STORAGE_KEY = "team-members";
@@ -18,7 +18,7 @@ export default function Command() {
   const [state, setState] = useState<State>({
     isLoading: false,
     searchText: "",
-    teamMembers: []
+    teamMembers: [],
   });
 
   // Load from async storage
@@ -41,7 +41,7 @@ export default function Command() {
     })();
   }, []);
 
-    // Save to local storage
+  // Save to local storage
   useEffect(() => {
     (async () => {
       await LocalStorage.setItem(STORAGE_KEY, JSON.stringify(state.teamMembers));
@@ -55,7 +55,7 @@ export default function Command() {
 
       setState((previous) => ({ ...previous, teamMembers: newTeamMembers, searchText: "" }));
     },
-    [state.teamMembers, setState]
+    [state.teamMembers, setState],
   );
 
   const handleDelete = useCallback(
@@ -64,19 +64,16 @@ export default function Command() {
       newTeamMembers.splice(index, 1);
       setState((previous) => ({ ...previous, teamMembers: newTeamMembers }));
     },
-    [state.teamMembers, setState]
+    [state.teamMembers, setState],
   );
 
   return (
     // TODO: Add onSearchTextChange
-    <List
-      isLoading={state.isLoading}
-      searchText={state.searchText}
-    >
+    <List isLoading={state.isLoading} searchText={state.searchText}>
       <EmptyView teamMembers={team} onCreate={handleCreate} />
       {state.teamMembers.map((member, index) => {
-          const time = new Date().toLocaleString(undefined, { timeZone: member.timeZone, timeStyle: "short" });
-          return (
+        const time = new Date().toLocaleString(undefined, { timeZone: member.timeZone, timeStyle: "short" });
+        return (
           <List.Item
             key={member.id}
             title={member.name}
@@ -91,8 +88,8 @@ export default function Command() {
               </ActionPanel>
             }
           />
-        )}
-      )}
+        );
+      })}
     </List>
   );
 }

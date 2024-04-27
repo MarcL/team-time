@@ -5,17 +5,19 @@ const command = async () => {
 
   // Team time zones
   const timeZones = [
-    { flag: '🇮🇱', timeZone: 'Israel' },
-    { flag: '🇬🇧', timeZone: 'Europe/London' },
-    { flag: '🇵🇱', timeZone: 'Poland' },
-    { flag: '🇨🇦', timeZone: 'Canada/Eastern' },
-    { flag: '🇺🇸', timeZone: 'America/Chicago' },
+    { flag: "🇮🇱", timeZone: "Israel" },
+    { flag: "🇬🇧", timeZone: "Europe/London" },
+    { flag: "🇵🇱", timeZone: "Poland" },
+    { flag: "🇨🇦", timeZone: "Canada/Eastern" },
+    { flag: "🇺🇸", timeZone: "America/Chicago" },
   ];
 
-  const subtitle = timeZones.map(({ flag, timeZone }) => {
-    const time = now.toLocaleString(undefined, { timeZone, timeStyle: "short" });
-    return `${flag} - ${time}`;
-  }).join(' | ');
+  const subtitle = timeZones
+    .map(({ flag, timeZone }) => {
+      const time = now.toLocaleString(undefined, { timeZone, timeStyle: "short" });
+      return `${flag} - ${time}`;
+    })
+    .join(" | ");
 
   await updateCommandMetadata({ subtitle });
 
@@ -25,7 +27,7 @@ const command = async () => {
       title: "Refreshed!",
       message: subtitle,
     });
-    
+
     toast.primaryAction = {
       title: "Copy to Clipboard",
       shortcut: { modifiers: ["cmd", "shift"], key: "c" },

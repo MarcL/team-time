@@ -6,7 +6,7 @@ function AddTeamMemberAction(props: { defaultTitle?: string; onCreate: (member: 
   return (
     <Action.Push
       icon={Icon.Pencil}
-      title="Add team member"
+      title="Add Team Member"
       shortcut={{ modifiers: ["cmd"], key: "n" }}
       target={<AddTeamMemberForm defaultTitle={props.defaultTitle} onCreate={props.onCreate} />}
     />

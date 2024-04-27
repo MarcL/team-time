@@ -25,7 +25,7 @@
     "nanoid": "^5.0.7"
   },
   "devDependencies": {
-    "@raycast/eslint-config": "^1.0.6",
+    "@raycast/eslint-config": "^1.0.8",
     "@types/node": "18.18.4",
     "eslint": "^8.51.0",
     "prettier": "^3.0.3",
