@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
-import { ActionPanel, List, LocalStorage } from "@raycast/api";
+import { ActionPanel, List, LocalStorage, Icon } from "@raycast/api";
 import { TeamMember } from "./types";
 import { EmptyView } from "./components";
 import { team } from './team';
@@ -76,12 +76,12 @@ export default function Command() {
       <EmptyView teamMembers={team} onCreate={handleCreate} />
       {state.teamMembers.map((member, index) => {
           const time = new Date().toLocaleString(undefined, { timeZone: member.timeZone, timeStyle: "short" });
-          const title = `${member.name} - ${time}`;
           return (
           <List.Item
             key={member.id}
-            title={title}
+            title={member.name}
             icon={member.flag}
+            accessories={[{ text: time, icon: Icon.Clock }]}
             actions={
               <ActionPanel>
                 <ActionPanel.Section>
