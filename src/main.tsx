@@ -3,7 +3,6 @@ import { nanoid } from "nanoid";
 import { ActionPanel, List, LocalStorage, Icon } from "@raycast/api";
 import { TeamMember } from "./types";
 import { EmptyView } from "./components";
-import { team } from "./team";
 import { AddTeamMemberAction, DeleteTeamMemberAction } from "./components";
 
 type State = {
@@ -70,7 +69,7 @@ export default function Command() {
   return (
     // TODO: Add onSearchTextChange
     <List isLoading={state.isLoading} searchText={state.searchText}>
-      <EmptyView teamMembers={team} onCreate={handleCreate} />
+      <EmptyView teamMembers={[]} onCreate={handleCreate} />
       {state.teamMembers.map((member, index) => {
         const time = new Date().toLocaleString(undefined, { timeZone: member.timeZone, timeStyle: "short" });
         return (
