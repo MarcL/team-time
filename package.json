@@ -20,7 +20,8 @@
     }
   ],
   "dependencies": {
-    "@raycast/api": "latest"
+    "@raycast/api": "latest",
+    "nanoid": "^5.0.7"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^1.0.6",

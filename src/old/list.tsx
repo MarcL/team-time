@@ -1,5 +1,5 @@
 import { Action, ActionPanel, List, open } from "@raycast/api";
-import {team, getSlackUserLink} from './team';
+import {team, getSlackUserLink} from '../team';
 
 export default function Command() {
   return (
