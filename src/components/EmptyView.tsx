@@ -11,7 +11,7 @@ function EmptyView(props: { teamMembers: TeamMember[]; onCreate: (member: TeamMe
         description={`No team members found.\nAdd one now!`}
         actions={
           <ActionPanel>
-            <AddTeamMemberAction defaultTitle={props.searchText} onCreate={props.onCreate} />
+            <AddTeamMemberAction defaultTitle={"Name"} onCreate={props.onCreate} />
           </ActionPanel>
         }
       />

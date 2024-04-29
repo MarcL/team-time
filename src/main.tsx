@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
-import { ActionPanel, List, LocalStorage, Icon } from "@raycast/api";
+import { Action, ActionPanel, List, LocalStorage, Icon } from "@raycast/api";
 import { TeamMember } from "./types";
 import { EmptyView } from "./components";
 import { AddTeamMemberAction, DeleteTeamMemberAction } from "./components";
+import EditTeamMemberAction from "./components/EditTeamMemberAction";
 
 type State = {
   isLoading: boolean;
@@ -57,6 +58,17 @@ export default function Command() {
     [state.teamMembers, setState],
   );
 
+  const handleUpdate = useCallback(
+    (member: TeamMember) => {
+      const updatedMembers = state.teamMembers.map((teamMember) => {
+        return teamMember.id === member.id ? {...teamMember, ...member} : teamMember;
+      });
+
+      setState((previous) => ({ ...previous, teamMembers: updatedMembers, searchText: "" }));
+    },
+    [state.teamMembers, setState],
+  );
+
   const handleDelete = useCallback(
     (index: number) => {
       const newTeamMembers = [...state.teamMembers];
@@ -68,7 +80,10 @@ export default function Command() {
 
   return (
     // TODO: Add onSearchTextChange
-    <List isLoading={state.isLoading} searchText={state.searchText}>
+    <List
+      isLoading={state.isLoading}
+      searchText={state.searchText}
+    >
       <EmptyView teamMembers={[]} onCreate={handleCreate} />
       {state.teamMembers.map((member, index) => {
         const time = new Date().toLocaleString(undefined, { timeZone: member.timeZone, timeStyle: "short" });
@@ -81,6 +96,7 @@ export default function Command() {
             actions={
               <ActionPanel>
                 <ActionPanel.Section>
+                  <EditTeamMemberAction teamMember={member} onUpdate={(updated) => handleUpdate(updated)} />
                   <AddTeamMemberAction onCreate={handleCreate} />
                   <DeleteTeamMemberAction onDelete={() => handleDelete(index)} />
                 </ActionPanel.Section>
