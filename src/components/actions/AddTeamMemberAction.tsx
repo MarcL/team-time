@@ -1,6 +1,6 @@
 import { Action, Icon } from "@raycast/api";
-import AddTeamMemberForm from "./AddTeamMemberForm";
-import { TeamMember } from "../types";
+import AddTeamMemberForm from "../forms/AddTeamMemberForm";
+import { TeamMember } from "../../types";
 
 function AddTeamMemberAction(props: { defaultTitle?: string; onCreate: (member: TeamMember) => void }) {
   return (

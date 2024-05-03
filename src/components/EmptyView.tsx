@@ -1,6 +1,6 @@
 import { ActionPanel, List } from "@raycast/api";
 import { TeamMember } from "../types";
-import AddTeamMemberAction from "./AddTeamMemberAction";
+import AddTeamMemberAction from "./actions/AddTeamMemberAction";
 
 function EmptyView(props: { teamMembers: TeamMember[]; onCreate: (member: TeamMember) => void }) {
   if (props.teamMembers.length > 0) {

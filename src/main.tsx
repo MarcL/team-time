@@ -4,7 +4,7 @@ import { Action, ActionPanel, List, LocalStorage, Icon } from "@raycast/api";
 import { TeamMember } from "./types";
 import { EmptyView } from "./components";
 import { AddTeamMemberAction, DeleteTeamMemberAction } from "./components";
-import EditTeamMemberAction from "./components/EditTeamMemberAction";
+import EditTeamMemberAction from "./components/actions/EditTeamMemberAction";
 
 type State = {
   isLoading: boolean;
@@ -97,8 +97,10 @@ export default function Command() {
               <ActionPanel>
                 <ActionPanel.Section>
                   <EditTeamMemberAction teamMember={member} onUpdate={(updated) => handleUpdate(updated)} />
-                  <AddTeamMemberAction onCreate={handleCreate} />
                   <DeleteTeamMemberAction onDelete={() => handleDelete(index)} />
+                </ActionPanel.Section>
+                <ActionPanel.Section>
+                  <AddTeamMemberAction onCreate={handleCreate} />
                 </ActionPanel.Section>
               </ActionPanel>
             }

@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { nanoid } from "nanoid";
 import { Form, Action, ActionPanel, useNavigation } from "@raycast/api";
-import { TeamMember } from "../types";
-import TimeZoneDropdown from "./TimeZoneDropdown";
-import FlagEmojiDropdown from "./FlagEmojiDropdown";
+import { TeamMember } from "../../types";
+import TimeZoneDropdown from "../dropdowns/TimeZoneDropdown";
+import FlagEmojiDropdown from "../dropdowns/FlagEmojiDropdown";
 
 function AddTeamMemberForm(props: { defaultTitle?: string; onCreate: (member: TeamMember) => void }) {
   const { onCreate, defaultTitle = "" } = props;

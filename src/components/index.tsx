@@ -1,5 +1,5 @@
 import EmptyView from "./EmptyView";
-import AddTeamMemberAction from "./AddTeamMemberAction";
-import DeleteTeamMemberAction from "./DeleteTeamMemberAction";
+import AddTeamMemberAction from "./actions/AddTeamMemberAction";
+import DeleteTeamMemberAction from "./actions/DeleteTeamMemberAction";
 
 export { EmptyView, AddTeamMemberAction, DeleteTeamMemberAction };

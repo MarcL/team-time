@@ -1,6 +1,6 @@
 import { Action, Icon } from "@raycast/api";
-import EditTeamMemberForm from "./EditTeamMemberForm";
-import { TeamMember } from "../types";
+import EditTeamMemberForm from "../forms/EditTeamMemberForm";
+import { TeamMember } from "../../types";
 
 function EditTeamMemberAction(props: { teamMember: TeamMember; onUpdate: (member: TeamMember) => void }) {
   return (

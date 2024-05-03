@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { Form, Action, ActionPanel, useNavigation } from "@raycast/api";
-import { TeamMember } from "../types";
-import TimeZoneDropdown from "./TimeZoneDropdown";
-import FlagEmojiDropdown from "./FlagEmojiDropdown";
+import { TeamMember } from "../../types";
+import TimeZoneDropdown from "../dropdowns/TimeZoneDropdown";
+import FlagEmojiDropdown from "../dropdowns/FlagEmojiDropdown";
 
 function EditTeamMemberForm(props: { teamMember: TeamMember, onUpdate: (member: TeamMember) => void }) {
   const { onUpdate, teamMember } = props;
