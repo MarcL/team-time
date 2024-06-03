@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { Form, Action, ActionPanel, useNavigation } from "@raycast/api";
 import { TeamMember } from "../../types";
 import TimeZoneDropdown from "../dropdowns/TimeZoneDropdown";
-import FlagEmojiDropdown from "../dropdowns/FlagEmojiDropdown";
+import CountryDropdown from "../dropdowns/CountryDropdown";
 
 function EditTeamMemberForm(props: { teamMember: TeamMember, onUpdate: (member: TeamMember) => void }) {
   const { onUpdate, teamMember } = props;
@@ -29,7 +29,7 @@ function EditTeamMemberForm(props: { teamMember: TeamMember, onUpdate: (member: 
     >
       <Form.TextField id="name" title="Name" defaultValue={teamMember.name} />
       <TimeZoneDropdown selected={teamMember.timeZone}/>
-      <FlagEmojiDropdown selected={teamMember.flag}/>
+      <CountryDropdown selected={teamMember.flag}/>
     </Form>
   );
 }

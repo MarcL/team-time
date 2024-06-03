@@ -1,14 +1,12 @@
 import { Form } from "@raycast/api";
 
-function TimeZoneDropdown(props: { selected?: string }) {
-  const timeZones = Intl.supportedValuesOf("timeZone");
-
-  const defaultValue = props.selected || "Europe/London";
+function TimeZoneDropdown(props: { timezones: Array<string> | null, selected?: string }) {
+  const defaultValue = props.selected || props.timezones?.[0];
 
   return (
     <Form.Dropdown id="timeZone" title="TimeZone" defaultValue={defaultValue}>
-      {timeZones.map((timeZone: string) => (
-        <Form.Dropdown.Item key={timeZone} value={timeZone} title={timeZone} />
+      {props.timezones?.map((timezone: string) => (
+        <Form.Dropdown.Item key={timezone} value={timezone} title={timezone} />
       ))}
     </Form.Dropdown>
   );

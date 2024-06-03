@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "@raycast/api": "latest",
+    "countries-and-timezones": "^3.6.0",
     "country-flag-emoji": "^1.0.3",
     "nanoid": "^5.0.7"
   },

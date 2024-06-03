@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
-import { Action, ActionPanel, List, LocalStorage, Icon } from "@raycast/api";
+import { ActionPanel, List, LocalStorage, Icon } from "@raycast/api";
 import { TeamMember } from "./types";
 import { EmptyView } from "./components";
 import { AddTeamMemberAction, DeleteTeamMemberAction } from "./components";
@@ -50,8 +50,10 @@ export default function Command() {
 
   const handleCreate = useCallback(
     (member: TeamMember) => {
-      const { name, timeZone, slackUserId, flag } = member;
-      const newTeamMembers: TeamMember[] = [...state.teamMembers, { id: nanoid(), name, flag, timeZone, slackUserId }];
+      const { name, timeZone, slackUserId, flag, countryCode } = member;
+      console.log(member);
+      const newTeamMember = { id: nanoid(), name, flag, countryCode, timeZone, slackUserId };
+      const newTeamMembers: TeamMember[] = [...state.teamMembers, newTeamMember];
 
       setState((previous) => ({ ...previous, teamMembers: newTeamMembers, searchText: "" }));
     },
@@ -82,7 +84,7 @@ export default function Command() {
     // TODO: Add onSearchTextChange
     <List
       isLoading={state.isLoading}
-      searchText={state.searchText}
+      // searchText={state.searchText}
     >
       <EmptyView teamMembers={[]} onCreate={handleCreate} />
       {state.teamMembers.map((member, index) => {
